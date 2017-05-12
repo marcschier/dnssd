@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="inc">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DebugServices.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="dnssd_clientlib.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="dnssd_clientstub.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="dnssd_ipc.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="GenLinkedList.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dnssd.def">
+      <Filter>src</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CommonServices.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugServices.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="dns_sd.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="dnssd_ipc.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="GenLinkedList.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="mDNSDebug.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="mDNSEmbeddedAPI.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

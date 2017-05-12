@@ -1,0 +1,22 @@
+﻿/**/*.i
+/**/*.user
+/**/obj/**
+/**/.vs
+/**/bin/**
+/**/csx/**
+/**/ecf/**
+/**/*.log
+/**/*.err
+/**/*.sdf
+/**/*.opendb
+/**/*.opensdf
+/**/*.vc.db
+/**/zlog.lock
+/**/TestResults/**
+/**/*.vsp*
+/**/*.psess
+/.vscode/**
+/build/**
+*.user
+# Ignore editor backup files
+*~
