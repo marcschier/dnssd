@@ -415,7 +415,7 @@ static unsigned int keytag(unsigned char *key, unsigned int keysize)
     return ac & 0xFFFF;
 }
 
-static void base64Encode(char *buffer, int buflen, void *rdata, unsigned int rdlen)
+static void base64Encode(char *buffer, size_t buflen, void *rdata, size_t rdlen)
 {
 #if _DNS_SD_LIBDISPATCH
     const void *result = NULL;
@@ -910,7 +910,7 @@ static void DNSSD_API reg_reply(DNSServiceRef sdref, const DNSServiceFlags flags
 }
 
 // Output the wire-format domainname pointed to by rd
-static int snprintd(char *p, int max, const unsigned char **rd)
+static size_t snprintd(char *p, size_t max, const unsigned char **rd)
 {
     const char *const buf = p;
     const char *const end = p + max;
@@ -920,7 +920,7 @@ static int snprintd(char *p, int max, const unsigned char **rd)
         *rd += 1 + **rd; 
     }
     *rd += 1;   // Advance over the final zero byte
-    return(p-buf);
+    return (p-buf);
 }
 
 static void ParseDNSSECRecords(uint16_t rrtype, char *rdb, char *p, unsigned const char *rd, uint16_t rdlen)
@@ -960,7 +960,7 @@ static void ParseDNSSECRecords(uint16_t rrtype, char *rdb, char *p, unsigned con
             
             l = p;
             p += snprintd(p, rdb + rdb_size - p, &rd);
-            len = p - l + 1;
+            len = (int)(p - l + 1);
             
             bitmaplen = rdlen - len;
             bmap = (unsigned char *)((unsigned char *)next + len);
@@ -1009,7 +1009,7 @@ static void ParseDNSSECRecords(uint16_t rrtype, char *rdb, char *p, unsigned con
             unsigned long expClock;
             const unsigned char *q = NULL;
             char *k = NULL;
-            int len;
+            size_t len;
             
             expClock = (unsigned long)swap32(rrsig->sigExpireTime);
             FormatTime(expClock, expTimeBuf, sizeof(expTimeBuf));
@@ -1286,14 +1286,14 @@ static void HandleEvents(void)
 }
 #else
 {
-    int dns_sd_fd  = client    ? DNSServiceRefSockFD(client   ) : -1;
-    int dns_sd_fd2 = client_pa ? DNSServiceRefSockFD(client_pa) : -1;
-    int nfds = dns_sd_fd + 1;
+    dnssd_sock_t dns_sd_fd  = client    ? DNSServiceRefSockFD(client   ) : -1;
+    dnssd_sock_t dns_sd_fd2 = client_pa ? DNSServiceRefSockFD(client_pa) : -1;
+    int nfds = (int)(dns_sd_fd + 1);
     fd_set readfds;
     struct timeval tv;
     int result;
 
-    if (dns_sd_fd2 > dns_sd_fd) nfds = dns_sd_fd2 + 1;
+    if (dns_sd_fd2 > dns_sd_fd) nfds = (int)(dns_sd_fd2 + 1);
 
     while (!stopNow)
     {
@@ -1440,7 +1440,7 @@ static DNSServiceErrorType RegisterService(DNSServiceRef *sdref,
             ptr += 1 + *ptr;
         }
         printf(" TXT");
-        ShowTXTRecord(ptr-txt, txt);
+        ShowTXTRecord((uint16_t)(ptr-txt), txt);
     }
     printf("\n");
 
