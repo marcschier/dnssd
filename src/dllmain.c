@@ -19,6 +19,8 @@
 #include <DebugServices.h>
 #include <stdlib.h>
 
+#include <crtdbg.h>
+
 BOOL APIENTRY	DllMain( HANDLE inModule, DWORD inReason, LPVOID inReserved )
 {
 	(void) inModule;
@@ -27,6 +29,10 @@ BOOL APIENTRY	DllMain( HANDLE inModule, DWORD inReason, LPVOID inReserved )
 	switch( inReason )
 	{
 		case DLL_PROCESS_ATTACH:
+#if defined(LEAK_DETECT)
+            _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF | _CRTDBG_CHECK_ALWAYS_DF);
+            break;
+#endif
 		case DLL_THREAD_ATTACH:
 		case DLL_THREAD_DETACH:
 		case DLL_PROCESS_DETACH:
