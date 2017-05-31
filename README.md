@@ -1,6 +1,6 @@
 # dnssd
 
-*Just* the dnssd.dll client for the Apple(TM) Bonjour(TM) Service (a.k.a. mdnsresponder). 
+*Just* the dnssd.dll client library for the Apple(TM)'s Bonjour(TM) Service (a.k.a. mdnsresponder). 
 
 A modern windows build of just the dnssd.dll client library that can be included
 into other projects.  While zeroconf on Linux is well supported by Avahi, on Windows 
