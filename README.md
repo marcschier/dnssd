@@ -2,10 +2,10 @@
 
 *Just* the dnssd.dll client for the Apple(TM) Bonjour(TM) Service (a.k.a. mdnsresponder). 
 
-I needed a simpler, modern build of just the dnssd.dll client library that can be included
-into other projects.  While libdnssd comes with Avahi, on Windows it is necessary to build 
-the entire mdnsresponder source, which is still relying on VS 1903, I meant 2003. 
+A modern windows build of just the dnssd.dll client library that can be included
+into other projects.  While zeroconf on Linux is well supported by Avahi, on Windows 
+you need dnssd.dll which still builds with VS 2003.  This repo contains only the portion
+needed to interface with mdnsresponder service on Windows, and compilers using VS 2017
+both as 32 and 64 bit without warnings.  
 
-However, next will be a
-- CMAKE build.
-- Abstract the IPC communication layer and make it replacable, so libuv/ev, etc. can be used.
+If you find issues, or would like to make changes please submit a pull request.
