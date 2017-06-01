@@ -107,3 +107,16 @@ endif()
     add_library(dnssd-static STATIC ${source_c_files})
     set_property(TARGET dnssd-static PROPERTY POSITION_INDEPENDENT_CODE ON)
     target_include_directories(dnssd-static PUBLIC src)
+
+    add_executable(dns-sd test/dns-sd.c test/ClientCommon.c)
+    set_property(TARGET dns-sd PROPERTY POSITION_INDEPENDENT_CODE ON)
+    target_include_directories(dns-sd PUBLIC src PUBLIC test)
+    target_compile_definitions(dns-sd 
+        PRIVATE _CONSOLE 
+        PRIVATE NOT_HAVE_GETOPT 
+        PRIVATE NOT_HAVE_SETLINEBUF
+    )
+    target_link_libraries(dns-sd PRIVATE dnssd)
+    target_link_libraries(dns-sd
+        PRIVATE ws2_32 
+    )
