@@ -94,17 +94,6 @@ endif()
     set_property(TARGET dnssd PROPERTY POSITION_INDEPENDENT_CODE ON)
     target_include_directories(dnssd PUBLIC src)
 if(WIN32)
-   # target_compile_definitions(dnssd
-   #     PRIVATE _WINDOWS=1
-   #     PRIVATE _WINSOCK_DEPRECATED_NO_WARNINGS=1
-   #     PRIVATE MDNS_DEBUGMSGS=0
-   #     PRIVATE WIN32_LEAN_AND_MEAN=1
-   #     PRIVATE NOT_HAVE_SA_LEN=1
-   #     PRIVATE USE_TCP_LOOPBACK=1
-   #     PRIVATE _CRT_SECURE_NO_DEPRECATE=1
-   #     PRIVATE _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1
-   #     PUBLIC mdns_EXPORTS=1
-   # )
     target_link_libraries(dnssd
         PRIVATE ws2_32 
         PRIVATE iphlpapi
