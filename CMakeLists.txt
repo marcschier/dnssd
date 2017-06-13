@@ -40,43 +40,6 @@ if(WIN32)
         src/dllmain.c
         src/dnssd.def
     )
-    if(MSVC)
-        if(not ${link_dynamic_msvcrt})
-            foreach(flag_var
-                    CMAKE_CXX_FLAGS 
-                    CMAKE_C_FLAGS
-                    CMAKE_CXX_FLAGS_DEBUG 
-                    CMAKE_C_FLAGS_DEBUG
-                    CMAKE_CXX_FLAGS_RELEASE 
-                    CMAKE_C_FLAGS_RELEASE
-                    CMAKE_CXX_FLAGS_MINSIZEREL 
-                    CMAKE_C_FLAGS_MINSIZEREL
-                    CMAKE_CXX_FLAGS_RELWITHDEBINFO 
-                    CMAKE_C_FLAGS_RELWITHDEBINFO
-                )
-                if(${flag_var} MATCHES "/MD")
-                    string(REGEX REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
-                endif(${flag_var} MATCHES "/MD")
-            endforeach(flag_var)
-            set (CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}" 
-                CACHE STRING "MSVC C Debug MT flags " FORCE)    
-            set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}" 
-                CACHE STRING "MSVC CXX Debug MT flags " FORCE)
-            set (CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}" 
-                CACHE STRING "MSVC C Release MT flags " FORCE)
-            set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}" 
-                CACHE STRING "MSVC CXX Release MT flags " FORCE)
-            set (CMAKE_C_FLAGS_MINSIZEREL "${CMAKE_C_FLAGS_MINSIZEREL}" 
-                CACHE STRING "MSVC C Debug MT flags " FORCE)    
-            set (CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS_MINSIZEREL}" 
-                CACHE STRING "MSVC C Release MT flags " FORCE)
-            set (CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELWITHDEBINFO}" 
-                CACHE STRING "MSVC CXX Debug MT flags " FORCE)    
-            set (CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}" 
-                CACHE STRING "MSVC CXX Release MT flags " FORCE)
-        endif()
-    endif()
-    
     add_definitions(
         -D_WINDOWS=1
         -D_WINSOCK_DEPRECATED_NO_WARNINGS=1
@@ -98,8 +61,7 @@ if(WIN32)
         PRIVATE ws2_32 
         PRIVATE iphlpapi
         PRIVATE secur32 
-        PRIVATE crypt32 
-        PRIVATE schannel
+        PRIVATE crypt32
     )
 else()
     # todo
