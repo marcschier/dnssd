@@ -3,7 +3,7 @@
 #
 cmake_minimum_required(VERSION 2.8.11)
 
-project(ua-lds)
+project(dnssd)
 include(CMakeToolsHelpers OPTIONAL)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
