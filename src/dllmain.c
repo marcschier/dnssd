@@ -21,6 +21,8 @@
 
 #include <crtdbg.h>
 
+#ifndef mdns_STATIC
+
 BOOL APIENTRY	DllMain( HANDLE inModule, DWORD inReason, LPVOID inReserved )
 {
 	(void) inModule;
@@ -40,6 +42,8 @@ BOOL APIENTRY	DllMain( HANDLE inModule, DWORD inReason, LPVOID inReserved )
 	}
     return( TRUE );
 }
+
+#endif
 
 
 BOOL
