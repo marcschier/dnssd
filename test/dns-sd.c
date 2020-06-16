@@ -70,10 +70,15 @@
     #include <ws2tcpip.h>
     #include <Iphlpapi.h>
     #include <process.h>
+#if !defined(__clang__)
 typedef int pid_t;
+
     #define getpid     _getpid
     #define strcasecmp _stricmp
     #define snprintf   _snprintf
+
+#endif
+
 static const char kFilePathSep = '\\';
     #ifndef HeapEnableTerminationOnCorruption
     #     define HeapEnableTerminationOnCorruption (HEAP_INFORMATION_CLASS)1
@@ -83,7 +88,7 @@ static const char kFilePathSep = '\\';
     #endif
     #define if_nametoindex if_nametoindex_win
     #define if_indextoname if_indextoname_win
-
+    
 typedef PCHAR (WINAPI * if_indextoname_funcptr_t)(ULONG index, PCHAR name);
 typedef ULONG (WINAPI * if_nametoindex_funcptr_t)(PCSTR name);
 

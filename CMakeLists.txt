@@ -63,6 +63,7 @@ if(WIN32)
         PRIVATE secur32 
         PRIVATE crypt32
     )
+    set_target_properties(dnssd PROPERTIES PREFIX "")
 else()
     # todo
 endif()

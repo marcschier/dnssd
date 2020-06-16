@@ -232,7 +232,6 @@ extern "C" {
     #include    "vxWorks.h"
 
 #elif ( TARGET_OS_WIN32 )
-
 // Windows
 
     #if ( !defined( WIN32_WINDOWS ) )
@@ -260,11 +259,14 @@ extern "C" {
         #pragma warning( disable:4127 ) // Disable "conditional expression is constant" warning for debug macros.
         #pragma warning( disable:4706 ) // Disable "assignment within conditional expression" for Microsoft headers.
 
+    #elif ( defined( __clang__ ) )
+        #include    <stdint.h>
     #endif
 
     #include    <windows.h>
     #include    <winsock2.h>
     #include    <Ws2tcpip.h>
+
 
     #if ( defined( _MSC_VER ) )
         #pragma warning( default:4706 )
@@ -474,7 +476,7 @@ typedef int socklen_t;
 // - Windows
 
 #if ( TARGET_LANGUAGE_C_LIKE )
-    #if ( !defined(_SSIZE_T) && ( TARGET_OS_WIN32 || !defined( _BSD_SSIZE_T_DEFINED_ ) ) && !TARGET_OS_FREEBSD && !TARGET_OS_LINUX && !TARGET_OS_VXWORKS && !TARGET_OS_MAC)
+    #if ( !defined(_SSIZE_T) && ( TARGET_OS_WIN32 || !defined( _BSD_SSIZE_T_DEFINED_ ) ) && !TARGET_OS_FREEBSD && !TARGET_OS_LINUX && !TARGET_OS_VXWORKS && !TARGET_OS_MAC && !defined(__clang__))
 typedef int ssize_t;
     #endif
 #endif
@@ -879,7 +881,11 @@ typedef unsigned long int uintptr_t;
         #define false   0
     #endif
 #else
+#if !defined(__clang__)
     #define COMMON_SERVICES_NEEDS_BOOL          ( !defined( __cplusplus ) && !__bool_true_false_are_defined )
+#else
+    #define COMMON_SERVICES_NEEDS_BOOL          false
+#endif
 #endif
 
 #if ( COMMON_SERVICES_NEEDS_BOOL )
