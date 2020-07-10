@@ -1,0 +1,4 @@
+@PACKAGE_INIT@
+
+check_required_components(DNSSDTargets)
+include("${CMAKE_CURRENT_LIST_DIR}/DNSSDTargets.cmake")
